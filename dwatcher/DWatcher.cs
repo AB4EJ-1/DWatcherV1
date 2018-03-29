@@ -66,6 +66,7 @@ namespace dwatcher
             toolStripMenuItem12.Checked = false;
             toolStripMenuItem13.Checked = false;
             pauseTime = 30;
+            this.Text = this.Text + " - Version: " + Application.ProductVersion;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -80,7 +81,6 @@ namespace dwatcher
             this.textBox4.Text = Properties.Settings.Default.call4;
             this.textBox5.Text = Properties.Settings.Default.call5;
             this.textBox6.Text = Properties.Settings.Default.call6;
-
 
         }
 

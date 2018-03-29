@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DWatcher));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.configureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pauseTimeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -99,7 +100,7 @@
             this.toolStripMenuItem12,
             this.toolStripMenuItem13});
             this.pauseTimeToolStripMenuItem.Name = "pauseTimeToolStripMenuItem";
-            this.pauseTimeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.pauseTimeToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.pauseTimeToolStripMenuItem.Text = "Pause time";
             // 
             // toolStripMenuItem7
@@ -156,14 +157,14 @@
             // dataSourceToolStripMenuItem
             // 
             this.dataSourceToolStripMenuItem.Name = "dataSourceToolStripMenuItem";
-            this.dataSourceToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.dataSourceToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.dataSourceToolStripMenuItem.Text = "Data Sources";
             this.dataSourceToolStripMenuItem.Click += new System.EventHandler(this.dataSourceToolStripMenuItem_Click);
             // 
             // notificationToolStripMenuItem
             // 
             this.notificationToolStripMenuItem.Name = "notificationToolStripMenuItem";
-            this.notificationToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.notificationToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.notificationToolStripMenuItem.Text = "Notification";
             this.notificationToolStripMenuItem.Click += new System.EventHandler(this.notificationToolStripMenuItem_Click);
             // 
@@ -409,6 +410,7 @@
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "DWatcher";
             this.Text = "DWatcher";
