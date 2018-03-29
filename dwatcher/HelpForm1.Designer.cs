@@ -62,10 +62,10 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(35, 109);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(476, 13);
+            this.label2.Size = new System.Drawing.Size(470, 13);
             this.label2.TabIndex = 5;
-            this.label2.Text = "Data Source:  (Default: dstaruseers.org) - lets you select the source of data for" +
-    " DWatcher to watch..";
+            this.label2.Text = "Data Source:  (Default: dstarusers.org) - lets you select the source of data for " +
+    "DWatcher to watch..";
             // 
             // label3
             // 
