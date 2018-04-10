@@ -39,11 +39,11 @@ namespace dwatcher
         public string dataSource;
     }
     */
-    
+
 
     public partial class DWatcher : Form
     {
- 
+
         public int pauseTime;
         public string dstarSource;
         public string DXSource;
@@ -56,7 +56,7 @@ namespace dwatcher
             InitializeComponent();
 
             nowcancel = false;
- 
+
             m_SynchronizationContext = (WindowsFormsSynchronizationContext)WindowsFormsSynchronizationContext.Current;
             toolStripMenuItem7.Checked = false;
             toolStripMenuItem8.Checked = false;
@@ -183,7 +183,7 @@ namespace dwatcher
             nowcancel = false;
             string webInfo = "";
             string dxInfo = "";
-            
+
             var context = TaskScheduler.FromCurrentSynchronizationContext();
             textBox1.Font = new Font(textBox1.Font, FontStyle.Regular);  // reset this in case user is doing monitoring
             textBox2.Font = new Font(textBox2.Font, FontStyle.Regular);
@@ -298,7 +298,7 @@ namespace dwatcher
                                 }, token, TaskCreationOptions.None, context);
 
 
-                               
+
 
                                 // handle case where user wants to monitor dstar
 
@@ -315,11 +315,11 @@ namespace dwatcher
                                     int sloc = webInfo.IndexOf(callsign_target);  // where callsign entry starts
                                     if (sloc >= 1)
                                     {
-                                   //     Task.Factory.StartNew(() =>
-                                   //     {
-                                      //      this.statusBox.Text = "found";
+                                        //     Task.Factory.StartNew(() =>
+                                        //     {
+                                        //      this.statusBox.Text = "found";
 
-                                     //   }, token, TaskCreationOptions.None, context);
+                                        //   }, token, TaskCreationOptions.None, context);
 
                                         int sloc_end = webInfo.IndexOf("</b>", sloc + 1);  // where callsign ends
                                         string call_entry = webInfo.Substring(sloc, sloc_end - sloc);
@@ -365,7 +365,8 @@ namespace dwatcher
                                         switch (i)
                                         {
                                             case 0:
-                                                this.textBox7.Text = report;
+                                                // this.textBox7.Text = report;
+                                                Task.Factory.StartNew(() => this.textBox7.Text = report, token, TaskCreationOptions.None, context);
                                                 if (timeoutExceeded)
                                                 {
                                                     textBox1.Font = new Font(textBox1.Font, FontStyle.Regular);
@@ -383,7 +384,8 @@ namespace dwatcher
                                                 break;
 
                                             case 1:
-                                                this.textBox8.Text = report;
+                                                //this.textBox8.Text = report;
+                                                Task.Factory.StartNew(() => this.textBox8.Text = report, token, TaskCreationOptions.None, context);
                                                 if (timeoutExceeded)
                                                 {
                                                     textBox2.Font = new Font(textBox2.Font, FontStyle.Regular);
@@ -401,7 +403,8 @@ namespace dwatcher
                                                 break;
 
                                             case 2:
-                                                this.textBox9.Text = report;
+                                                //this.textBox9.Text = report;
+                                                Task.Factory.StartNew(() => this.textBox9.Text = report, token, TaskCreationOptions.None, context);
                                                 if (timeoutExceeded)
                                                 {
                                                     textBox3.Font = new Font(textBox3.Font, FontStyle.Regular);
@@ -418,7 +421,8 @@ namespace dwatcher
                                                 }
                                                 break;
                                             case 3:
-                                                this.textBox10.Text = report;
+                                                //this.textBox10.Text = report;
+                                                Task.Factory.StartNew(() => this.textBox10.Text = report, token, TaskCreationOptions.None, context);
                                                 if (timeoutExceeded)
                                                 {
                                                     textBox4.Font = new Font(textBox4.Font, FontStyle.Regular);
@@ -435,7 +439,8 @@ namespace dwatcher
                                                 }
                                                 break;
                                             case 4:
-                                                this.textBox11.Text = report;
+                                                //this.textBox11.Text = report;
+                                                Task.Factory.StartNew(() => this.textBox11.Text = report, token, TaskCreationOptions.None, context);
                                                 if (timeoutExceeded)
                                                 {
                                                     textBox5.Font = new Font(textBox5.Font, FontStyle.Regular);
@@ -452,7 +457,8 @@ namespace dwatcher
                                                 }
                                                 break;
                                             case 5:
-                                                this.textBox12.Text = report;
+                                                //this.textBox12.Text = report;
+                                                Task.Factory.StartNew(() => this.textBox12.Text = report, token, TaskCreationOptions.None, context);
                                                 if (timeoutExceeded)
                                                 {
                                                     textBox6.Font = new Font(textBox6.Font, FontStyle.Regular);
@@ -475,65 +481,65 @@ namespace dwatcher
 
 
                                     }  // end of section if (sloc >= 1)
-                          //          else
-                           //         {
-                            //            Task.Factory.StartNew(() =>
-                          //              {
-                          //                  this.statusBox.Text =  callsign_target + "not found in dstar";
+                                       //          else
+                                       //         {
+                                       //            Task.Factory.StartNew(() =>
+                                       //              {
+                                       //                  this.statusBox.Text =  callsign_target + "not found in dstar";
 
-                          //              }, token, TaskCreationOptions.None, context);
-                           //             Thread.Sleep(5000);
-                          //          }
+                                    //              }, token, TaskCreationOptions.None, context);
+                                    //             Thread.Sleep(5000);
+                                    //          }
 
-                           //         Task.Factory.StartNew(() =>
-                          //          {
-                           //             this.statusBox.Text = "exit dstar section";
+                                    //         Task.Factory.StartNew(() =>
+                                    //          {
+                                    //             this.statusBox.Text = "exit dstar section";
 
-                           //         }, token, TaskCreationOptions.None, context);
-                          //          Thread.Sleep(5000);
+                                    //         }, token, TaskCreationOptions.None, context);
+                                    //          Thread.Sleep(5000);
 
                                 } // end of section handling dstar
 
 
-                          //      Task.Factory.StartNew(() =>
-                           //     {
-                         //           this.statusBox.Text = "preparing to check DX";
+                                //      Task.Factory.StartNew(() =>
+                                //     {
+                                //           this.statusBox.Text = "preparing to check DX";
 
-                             //   }, token, TaskCreationOptions.None, context);
-                             //     Thread.Sleep(5000);
+                                //   }, token, TaskCreationOptions.None, context);
+                                //     Thread.Sleep(5000);
 
                                 // handle case where user wants to monitor DX cluster
                                 if (Properties.Settings.Default.watchdx)
                                 {
 
-                                  //  Task.Factory.StartNew(() =>
-                                   // {
-                                  //      this.statusBox.Text = "reached search of rep";
+                                    //  Task.Factory.StartNew(() =>
+                                    // {
+                                    //      this.statusBox.Text = "reached search of rep";
 
-                                  //  }, token, TaskCreationOptions.None, context);
-                                  //  Thread.Sleep(5000);
+                                    //  }, token, TaskCreationOptions.None, context);
+                                    //  Thread.Sleep(5000);
                                     foreach (HeardReport rep in reportList)
                                     {
 
-                                    //    Task.Factory.StartNew(() =>
-                                    //    {
-                                    //        this.statusBox.Text = "Looking at " + rep.station_heard;
+                                        //    Task.Factory.StartNew(() =>
+                                        //    {
+                                        //        this.statusBox.Text = "Looking at " + rep.station_heard;
 
-                                   //     }, token, TaskCreationOptions.None, context);
-                                      //  Thread.Sleep(1000);
+                                        //     }, token, TaskCreationOptions.None, context);
+                                        //  Thread.Sleep(1000);
 
                                         if (rep.station_heard == callsign_target)
                                         {
-                                //            Task.Factory.StartNew(() =>
-                                //            {
-                                 //               this.statusBox.Text = "FOUND "+ callsign_target;
+                                            //            Task.Factory.StartNew(() =>
+                                            //            {
+                                            //               this.statusBox.Text = "FOUND "+ callsign_target;
 
-                                  //          }, token, TaskCreationOptions.None, context);
-                                  //          Thread.Sleep(2000);
-                                            string convertedDate = rep.date_time_reported.Substring(5,2) + "/" +
-                                                    rep.date_time_reported.Substring(8,2) + "/" +
-                                                    rep.date_time_reported.Substring(2,2) + " " +
-                                                    rep.date_time_reported.Substring(11,5) + ":00";
+                                            //          }, token, TaskCreationOptions.None, context);
+                                            //          Thread.Sleep(2000);
+                                            string convertedDate = rep.date_time_reported.Substring(5, 2) + "/" +
+                                                    rep.date_time_reported.Substring(8, 2) + "/" +
+                                                    rep.date_time_reported.Substring(2, 2) + " " +
+                                                    rep.date_time_reported.Substring(11, 5) + ":00";
 
 
                                             DateTime dt = Convert.ToDateTime(convertedDate);
@@ -546,18 +552,18 @@ namespace dwatcher
                                             string report;
                                             bool timeoutExceeded = false;
 
-                                       //     if (difference_mins > Convert.ToDouble(Properties.Settings.Default.timeOut))
-                                       //     {
-                                       //         report = "";
-                                      //          timeoutExceeded = true;
-                                       //     }
-                                      //      else
-                                      //      {
+                                            //     if (difference_mins > Convert.ToDouble(Properties.Settings.Default.timeOut))
+                                            //     {
+                                            //         report = "";
+                                            //          timeoutExceeded = true;
+                                            //     }
+                                            //      else
+                                            //      {
 
-                                                string result = String.Format("{0,6:###.0}", difference_mins);
+                                            string result = String.Format("{0,6:###.0}", difference_mins);
 
-                                                report = string.Format("{0,-18} {1,-20} {2,34} {3,8}",  convertedDate, rep.frequency_value, rep.country, result);
-                                      //      }
+                                            report = string.Format("{0,-18} {1,-20} {2,34} {3,8}", convertedDate, rep.frequency_value, rep.country, result);
+                                            //      }
 
                                             switch (i)
                                             {
@@ -680,7 +686,8 @@ namespace dwatcher
 
 
                             }
-                            catch (Exception e1) {
+                            catch (Exception e1)
+                            {
 
                                 Task.Factory.StartNew(() =>
                                 {
@@ -688,11 +695,12 @@ namespace dwatcher
 
                                 }, token, TaskCreationOptions.None, context);
                                 Thread.Sleep(2000);
-                                
-                                
-                                
-                                
-                                /* Console.WriteLine("An error occurred: '{0}'", e1);*/ } // ignore if the response fails
+
+
+
+
+                                /* Console.WriteLine("An error occurred: '{0}'", e1);*/
+                            } // ignore if the response fails
 
 
 
@@ -700,11 +708,15 @@ namespace dwatcher
 
                         } // end of for loop
 
-                        this.statusBox.Text = "waiting";
+                        //KV4S 04/10/18 - adding to help with debugging.
+                        //this.statusBox.Text = "waiting";                     
+                        Task.Factory.StartNew(() => this.statusBox.Text = "waiting ", token, TaskCreationOptions.None, context);
+
                         if (nowcancel) break;
-                        Thread.Sleep(1000*pauseTime);
-                        this.statusBox.Text = Convert.ToString(1000 * pauseTime);
-                       // Thread.Sleep(2000);
+                        Thread.Sleep(1000 * pauseTime);
+                        //this.statusBox.Text = Convert.ToString(1000 * pauseTime);
+                        Task.Factory.StartNew(() => this.statusBox.Text = Convert.ToString(1000 * pauseTime), token, TaskCreationOptions.None, context);
+                        // Thread.Sleep(2000);
                     }  // end of infinite loop 
 
                 });
@@ -716,7 +728,7 @@ namespace dwatcher
 
         private void sendEmail(string theCallsign, string theNode)
         {
-            if (this.enableNotification.Checked  )  // skip this if user has not enabled monitoring
+            if (this.enableNotification.Checked)  // skip this if user has not enabled monitoring
             {
                 try
                 {
@@ -858,15 +870,15 @@ namespace dwatcher
 
         private void watchDstar_CheckedChanged(object sender, EventArgs e)
         {
-   //         if (!watchDstar.Checked & !watchDX.Checked) // user turned off both, so we default to dstar
-        //    {
-       //         watchDstar.Checked = true;
-        //        Properties.Settings.Default.watchdstar = true;
-       //         Properties.Settings.Default.Save();
-       //         return;
-       //     }
+            //         if (!watchDstar.Checked & !watchDX.Checked) // user turned off both, so we default to dstar
+            //    {
+            //         watchDstar.Checked = true;
+            //        Properties.Settings.Default.watchdstar = true;
+            //         Properties.Settings.Default.Save();
+            //         return;
+            //     }
             Properties.Settings.Default.watchdstar = watchDstar.Checked;
-          //  Properties.Settings.Default.watchdx = watchDX.Checked;
+            //  Properties.Settings.Default.watchdx = watchDX.Checked;
             Properties.Settings.Default.Save();
 
         }
@@ -874,7 +886,7 @@ namespace dwatcher
         private void watchDX_CheckedChanged(object sender, EventArgs e)
         {
 
-       //     Properties.Settings.Default.watchdstar = watchDstar.Checked;
+            //     Properties.Settings.Default.watchdstar = watchDstar.Checked;
             Properties.Settings.Default.watchdx = watchDX.Checked;
             Properties.Settings.Default.Save();
         }
