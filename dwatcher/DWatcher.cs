@@ -382,7 +382,7 @@ namespace dwatcher
                                                     if (this.textBox1.Font.Bold == false)
                                                     {
                                                         sendEmail(callsign_target, rptr_entry);
-                                                        textBox1.Font = new Font(textBox1.Font, FontStyle.Bold);
+                                                        Task.Factory.StartNew(() => textBox1.Font = new Font(textBox1.Font, FontStyle.Bold), token, TaskCreationOptions.None, context);
                                                     }
                                                 }
                                                 break;
@@ -401,7 +401,7 @@ namespace dwatcher
                                                     if (this.textBox2.Font.Bold == false)
                                                     {
                                                         sendEmail(callsign_target, rptr_entry);
-                                                        textBox2.Font = new Font(textBox2.Font, FontStyle.Bold);
+                                                        Task.Factory.StartNew(() => textBox2.Font = new Font(textBox2.Font, FontStyle.Bold), token, TaskCreationOptions.None, context);
                                                     }
                                                 }
                                                 break;
@@ -420,7 +420,7 @@ namespace dwatcher
                                                     if (this.textBox3.Font.Bold == false)
                                                     {
                                                         sendEmail(callsign_target, rptr_entry);
-                                                        textBox3.Font = new Font(textBox3.Font, FontStyle.Bold);
+                                                        Task.Factory.StartNew(() => textBox3.Font = new Font(textBox3.Font, FontStyle.Bold), token, TaskCreationOptions.None, context);
                                                     }
                                                 }
                                                 break;
@@ -438,7 +438,7 @@ namespace dwatcher
                                                     if (this.textBox4.Font.Bold == false)
                                                     {
                                                         sendEmail(callsign_target, rptr_entry);
-                                                        textBox4.Font = new Font(textBox4.Font, FontStyle.Bold);
+                                                        Task.Factory.StartNew(() => textBox4.Font = new Font(textBox4.Font, FontStyle.Bold), token, TaskCreationOptions.None, context);
                                                     }
                                                 }
                                                 break;
@@ -456,7 +456,7 @@ namespace dwatcher
                                                     if (this.textBox5.Font.Bold == false)
                                                     {
                                                         sendEmail(callsign_target, rptr_entry);
-                                                        textBox5.Font = new Font(textBox5.Font, FontStyle.Bold);
+                                                        Task.Factory.StartNew(() => textBox5.Font = new Font(textBox5.Font, FontStyle.Bold), token, TaskCreationOptions.None, context);
                                                     }
                                                 }
                                                 break;
@@ -474,7 +474,7 @@ namespace dwatcher
                                                     if (this.textBox6.Font.Bold == false)
                                                     {
                                                         sendEmail(callsign_target, rptr_entry);
-                                                        textBox6.Font = new Font(textBox6.Font, FontStyle.Bold);
+                                                        Task.Factory.StartNew(() => textBox6.Font = new Font(textBox6.Font, FontStyle.Bold), token, TaskCreationOptions.None, context);
                                                     }
                                                 }
                                                 break;
