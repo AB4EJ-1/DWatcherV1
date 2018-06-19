@@ -323,6 +323,10 @@ namespace dwatcher
 
                                         int sloc_end = webInfo.IndexOf("</b>", sloc + 1);  // where callsign ends
                                         string call_entry = webInfo.Substring(sloc, sloc_end - sloc);
+                                        if (call_entry != callsign_target)
+                                        {
+                                            continue;
+                                        }
                                         int time_loc = webInfo.IndexOf("<td>", sloc_end);
                                         int time_end = webInfo.IndexOf("</td>", time_loc);
                                         string time_entry = webInfo.Substring(time_loc + 4, time_end - time_loc - 8);
