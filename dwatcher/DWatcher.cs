@@ -312,7 +312,8 @@ namespace dwatcher
                                     }, token, TaskCreationOptions.None, context);
                                     //  Thread.Sleep(2000);
 
-                                    int sloc = webInfo.IndexOf(callsign_target);  // where callsign entry starts
+                                    //KV4S 05/01/2019 - attempt to find exact calls vs slight matches. exp: N4LX vs N4LXT
+                                    int sloc = webInfo.IndexOf("<b>" + callsign_target + "</b>");  // where callsign entry starts
                                     if (sloc >= 1)
                                     {
                                         //     Task.Factory.StartNew(() =>
@@ -322,7 +323,7 @@ namespace dwatcher
                                         //   }, token, TaskCreationOptions.None, context);
 
                                         int sloc_end = webInfo.IndexOf("</b>", sloc + 1);  // where callsign ends
-                                        string call_entry = webInfo.Substring(sloc, sloc_end - sloc);
+                                        string call_entry = webInfo.Substring(sloc + 3, sloc_end - (sloc + 3));
                                         if (call_entry != callsign_target)
                                         {
                                             continue;
