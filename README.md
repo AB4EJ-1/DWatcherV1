@@ -1,4 +1,4 @@
-# DWatcherV1
+# DWatcher
 What is DWatcher?
 
 DWatcher is an application for Microsoft Windows PCs you can use to watch for when up to 6 callsigns are reported as being on the air (DSTAR stations appearing in dstarusers.org) and DX stations (being reported on the DXCluster network). If the program detects one (or more) of the callsigns you are watching for, information about the station (date/time heard, reflector/repeater/frequency, and location) will be displayed on the screen.  With a bit of effort, you can configure the system to send you an email or SMS text message when one of the callsigns is reported as on the air. This means you don’t have to sit by the radio constantly to monitor for a friend or a coveted DX station.
