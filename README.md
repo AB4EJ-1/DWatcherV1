@@ -7,8 +7,8 @@ The system has been tested on Windows 7, 8, and 10. It requires the dot-NET fram
 
 DWatcher is unsupported freeware. As I mentioned above, it has been tested to work on various platforms, but if you find a bug, you may report it to me (but I can’t guarantee a fix). If you are not technically skilled, you may find the installation or email/text notification challenging – in which case, please ask an IT-skilled friend for help. I am not able to provide extensive support.
 
-# Latest Version: 1.2.0.2
-https://github.com/AB4EJ-1/DWatcherV1/releases/download/1.2.0.2/dwatcher.zip
+# Latest Version: 1.2.0.3
+https://github.com/AB4EJ-1/DWatcherV1/releases/download/1.2.0.3/dwatcher.zip
 
 # Project Website:
 https://dxdisplay.caps.ua.edu/Software/installing%20and%20using%20dwatcher.htm
