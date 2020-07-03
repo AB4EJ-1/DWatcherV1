@@ -228,6 +228,10 @@ namespace dwatcher
 
                             }, token, TaskCreationOptions.None, context);
 
+                            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls
+                                                                   | SecurityProtocolType.Tls11
+                                                                   | SecurityProtocolType.Tls12
+                                                                   | SecurityProtocolType.Ssl3;
                             WebRequest request = WebRequest.Create(Properties.Settings.Default.dstarSource);
                             WebResponse response = request.GetResponse();
 
