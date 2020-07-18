@@ -224,7 +224,7 @@ namespace dwatcher
 
                             Task.Factory.StartNew(() =>
                             {
-                                this.statusBox.Text = "Getting Dstar info";
+                                this.statusBox.Text = "Getting DStar info";
 
                             }, token, TaskCreationOptions.None, context);
 
@@ -233,29 +233,44 @@ namespace dwatcher
                                                                    | SecurityProtocolType.Tls12
                                                                    | SecurityProtocolType.Ssl3;
                             WebRequest request = WebRequest.Create(Properties.Settings.Default.dstarSource);
-                            WebResponse response = request.GetResponse();
-
-                            // Get the stream containing content returned by the server.
-                            Stream dataStream = response.GetResponseStream();
-                            // Open the stream using a StreamReader for easy access.
-                            StreamReader reader = new StreamReader(dataStream);
-                            // Read the content.
-                            string responseFromServer = reader.ReadToEnd();
-                            // Display the content.
-                            //   Console.WriteLine(responseFromServer);         // debugging only                           
-                            webInfo = responseFromServer;
-                            reader.Close();
-                            response.Close();
-                            reader.Dispose();
-                            response.Dispose();
-
-
-                            //     Thread.Sleep(5000);
-                            Task.Factory.StartNew(() =>
+                            //KV4S 7/16/20 1.2.0.4attempt to stop freezing up 
+                            //WebResponse response = request.GetResponse();
+                            request.Timeout = 30000; //30 second timeout
+                            try
                             {
-                                this.statusBox.Text = string.Concat("bytes received:", Convert.ToString(webInfo.Length));
+                                WebResponse response = request.GetResponse();
+                                // Get the stream containing content returned by the server.
+                                Stream dataStream = response.GetResponseStream();
+                                // Open the stream using a StreamReader for easy access.
+                                StreamReader reader = new StreamReader(dataStream);
+                                // Read the content.
+                                string responseFromServer = reader.ReadToEnd();
+                                // Display the content.
+                                //   Console.WriteLine(responseFromServer);         // debugging only                           
+                                webInfo = responseFromServer;
+                                reader.Close();
+                                response.Close();
+                                reader.Dispose();
+                                response.Dispose();
 
-                            }, token, TaskCreationOptions.None, context);
+
+                                //     Thread.Sleep(5000);
+                                Task.Factory.StartNew(() =>
+                                {
+                                    this.statusBox.Text = string.Concat("bytes received:", Convert.ToString(webInfo.Length));
+
+                                }, token, TaskCreationOptions.None, context);
+                            }
+                            catch (Exception)
+                            {
+                                //do nothing.
+                                Task.Factory.StartNew(() =>
+                                {
+                                    this.statusBox.Text = "DStar Timeout, stand by! ";
+
+                                }, token, TaskCreationOptions.None, context);
+                                Thread.Sleep(2000);
+                            }
                         }
                         List<HeardReport> reportList = new List<HeardReport>();
 
