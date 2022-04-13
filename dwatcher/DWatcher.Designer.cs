@@ -41,6 +41,7 @@
             this.toolStripMenuItem13 = new System.Windows.Forms.ToolStripMenuItem();
             this.dataSourceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.notificationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.telegramNotificationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -65,6 +66,8 @@
             this.enableNotification = new System.Windows.Forms.CheckBox();
             this.watchDstar = new System.Windows.Forms.CheckBox();
             this.watchDX = new System.Windows.Forms.CheckBox();
+            this.cbTelegram = new System.Windows.Forms.CheckBox();
+            this.dWatcherOnGitHubToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,7 +75,8 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.configureToolStripMenuItem,
-            this.helpToolStripMenuItem1});
+            this.helpToolStripMenuItem1,
+            this.dWatcherOnGitHubToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(784, 24);
@@ -84,7 +88,8 @@
             this.configureToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.pauseTimeToolStripMenuItem,
             this.dataSourceToolStripMenuItem,
-            this.notificationToolStripMenuItem});
+            this.notificationToolStripMenuItem,
+            this.telegramNotificationToolStripMenuItem});
             this.configureToolStripMenuItem.Name = "configureToolStripMenuItem";
             this.configureToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
             this.configureToolStripMenuItem.Text = "Configure";
@@ -100,7 +105,7 @@
             this.toolStripMenuItem12,
             this.toolStripMenuItem13});
             this.pauseTimeToolStripMenuItem.Name = "pauseTimeToolStripMenuItem";
-            this.pauseTimeToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.pauseTimeToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.pauseTimeToolStripMenuItem.Text = "Pause time";
             // 
             // toolStripMenuItem7
@@ -157,16 +162,23 @@
             // dataSourceToolStripMenuItem
             // 
             this.dataSourceToolStripMenuItem.Name = "dataSourceToolStripMenuItem";
-            this.dataSourceToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.dataSourceToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.dataSourceToolStripMenuItem.Text = "Data Sources";
             this.dataSourceToolStripMenuItem.Click += new System.EventHandler(this.dataSourceToolStripMenuItem_Click);
             // 
             // notificationToolStripMenuItem
             // 
             this.notificationToolStripMenuItem.Name = "notificationToolStripMenuItem";
-            this.notificationToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
-            this.notificationToolStripMenuItem.Text = "Notification";
+            this.notificationToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.notificationToolStripMenuItem.Text = "Email Notification";
             this.notificationToolStripMenuItem.Click += new System.EventHandler(this.notificationToolStripMenuItem_Click);
+            // 
+            // telegramNotificationToolStripMenuItem
+            // 
+            this.telegramNotificationToolStripMenuItem.Name = "telegramNotificationToolStripMenuItem";
+            this.telegramNotificationToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.telegramNotificationToolStripMenuItem.Text = "Telegram Notification";
+            this.telegramNotificationToolStripMenuItem.Click += new System.EventHandler(this.telegramNotificationToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem1
             // 
@@ -181,14 +193,14 @@
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.helpToolStripMenuItem.Text = "Help";
             this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -383,11 +395,30 @@
             this.watchDX.UseVisualStyleBackColor = true;
             this.watchDX.CheckedChanged += new System.EventHandler(this.watchDX_CheckedChanged);
             // 
+            // cbTelegram
+            // 
+            this.cbTelegram.AutoSize = true;
+            this.cbTelegram.Location = new System.Drawing.Point(160, 276);
+            this.cbTelegram.Name = "cbTelegram";
+            this.cbTelegram.Size = new System.Drawing.Size(160, 17);
+            this.cbTelegram.TabIndex = 22;
+            this.cbTelegram.Text = "Enable Telegram notification";
+            this.cbTelegram.UseVisualStyleBackColor = true;
+            this.cbTelegram.CheckedChanged += new System.EventHandler(this.cbTelegram_CheckedChanged);
+            // 
+            // dWatcherOnGitHubToolStripMenuItem
+            // 
+            this.dWatcherOnGitHubToolStripMenuItem.Name = "dWatcherOnGitHubToolStripMenuItem";
+            this.dWatcherOnGitHubToolStripMenuItem.Size = new System.Drawing.Size(129, 20);
+            this.dWatcherOnGitHubToolStripMenuItem.Text = "DWatcher on GitHub";
+            this.dWatcherOnGitHubToolStripMenuItem.Click += new System.EventHandler(this.dWatcherOnGitHubToolStripMenuItem_Click);
+            // 
             // DWatcher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 324);
+            this.Controls.Add(this.cbTelegram);
             this.Controls.Add(this.watchDX);
             this.Controls.Add(this.watchDstar);
             this.Controls.Add(this.enableNotification);
@@ -460,5 +491,8 @@
         private System.Windows.Forms.CheckBox enableNotification;
         private System.Windows.Forms.CheckBox watchDstar;
         private System.Windows.Forms.CheckBox watchDX;
+        private System.Windows.Forms.ToolStripMenuItem telegramNotificationToolStripMenuItem;
+        private System.Windows.Forms.CheckBox cbTelegram;
+        private System.Windows.Forms.ToolStripMenuItem dWatcherOnGitHubToolStripMenuItem;
     }
 }

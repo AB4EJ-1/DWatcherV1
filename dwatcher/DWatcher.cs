@@ -14,6 +14,7 @@ using System.Threading;
 using System.Net.Mail;
 using System.Security;
 using Newtonsoft.Json;
+using Telegram.Bot;
 
 namespace dwatcher
 {
@@ -710,7 +711,7 @@ namespace dwatcher
 
 
                             }
-                            catch (Exception e1)
+                            catch (Exception)
                             {
 
                                 Task.Factory.StartNew(() =>
@@ -789,6 +790,20 @@ namespace dwatcher
                 }
             }
 
+            if (this.cbTelegram.Checked)
+            {                
+                try
+                {
+                    TelegramBotClient bot = new TelegramBotClient(Properties.Settings.Default.BotToken);
+                    bot.SendTextMessageAsync(Properties.Settings.Default.DestinationID,
+                            "dwatcher: heard " + theCallsign.ToUpper() + " on Node: " + theNode);
+                    Thread.Sleep(2000);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }
         }
 
         private void statusBox_TextChanged(object sender, EventArgs e)
@@ -933,6 +948,32 @@ namespace dwatcher
             return false;
         }
 
+        private bool missingTelegramData()
+        {
+            if (Properties.Settings.Default.BotToken == "" | Properties.Settings.Default.DestinationID == "")
+                return true;
+            return false;
+        }
+
+        private void telegramNotificationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           Telegram telegram = new Telegram();
+           telegram.Show();
+        }
+
+        private void cbTelegram_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.cbTelegram.Checked & missingTelegramData())
+            {
+                MessageBox.Show("Cannot enable telegram notification; missing data. Please fill in all the fields in the Configure/Telegram screen.");
+                this.enableNotification.Checked = false;
+            }
+        }
+
+        private void dWatcherOnGitHubToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/AB4EJ-1/DWatcherV1");
+        }
     }
 
 
