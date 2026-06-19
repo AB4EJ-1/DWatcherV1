@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
 using System.Net;
+using System.Net.Http;
 using System.IO;
 using System.Threading;
 using System.Net.Mail;
@@ -51,6 +52,10 @@ namespace dwatcher
         string[] callsign;
         bool nowcancel;
         private WindowsFormsSynchronizationContext m_SynchronizationContext;
+        private static readonly HttpClient httpClient = new HttpClient
+        {
+            Timeout = TimeSpan.FromSeconds(30)
+        };
 
         public DWatcher()
         {
@@ -229,31 +234,9 @@ namespace dwatcher
 
                             }, token, TaskCreationOptions.None, context);
 
-                            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls
-                                                                   | SecurityProtocolType.Tls11
-                                                                   | SecurityProtocolType.Tls12
-                                                                   | SecurityProtocolType.Ssl3;
-                            WebRequest request = WebRequest.Create(Properties.Settings.Default.dstarSource);
-                            //KV4S 7/16/20 1.2.0.4attempt to stop freezing up 
-                            //WebResponse response = request.GetResponse();
-                            request.Timeout = 30000; //30 second timeout
                             try
                             {
-                                WebResponse response = request.GetResponse();
-                                // Get the stream containing content returned by the server.
-                                Stream dataStream = response.GetResponseStream();
-                                // Open the stream using a StreamReader for easy access.
-                                StreamReader reader = new StreamReader(dataStream);
-                                // Read the content.
-                                string responseFromServer = reader.ReadToEnd();
-                                // Display the content.
-                                //   Console.WriteLine(responseFromServer);         // debugging only                           
-                                webInfo = responseFromServer;
-                                reader.Close();
-                                response.Close();
-                                reader.Dispose();
-                                response.Dispose();
-
+                                webInfo = httpClient.GetStringAsync(Properties.Settings.Default.dstarSource).ConfigureAwait(false).GetAwaiter().GetResult();
 
                                 //     Thread.Sleep(5000);
                                 Task.Factory.StartNew(() =>
@@ -283,18 +266,7 @@ namespace dwatcher
 
                             }, token, TaskCreationOptions.None, context);
                             Thread.Sleep(1000);
-                            WebRequest request = WebRequest.Create(Properties.Settings.Default.DXSource);
-                            WebResponse response = request.GetResponse();
-
-                            // Get the stream containing content returned by the server.
-                            Stream dataStream = response.GetResponseStream();
-                            // Open the stream using a StreamReader for easy access.
-                            StreamReader reader = new StreamReader(dataStream);
-                            // Read the content.
-                            string responseFromServer = reader.ReadToEnd();
-                            // Display the content.
-                            //   Console.WriteLine(responseFromServer);                                    
-                            dxInfo = responseFromServer;
+                            dxInfo = httpClient.GetStringAsync(Properties.Settings.Default.DXSource).ConfigureAwait(false).GetAwaiter().GetResult();
 
                             reportList = JsonConvert.DeserializeObject<List<HeardReport>>(dxInfo);
 
@@ -979,22 +951,22 @@ namespace dwatcher
 
     class HeardReport
     {
-        public string station_heard;
-        public string station_reporting;
-        public string date_time_reported;
-        public string mode_computed;
-        public string country;
-        public string report_key;
-        public string solar_flux_value;
-        public string distance_value;
-        public string band_value;
-        public string heard_latitude_value;
-        public string heard_longitude_value;
-        public string reporting_latitude_value;
-        public string reporting_longitude_value;
-        public string frequency_value;
-        public string timeGMT_value;
-        public string country_reporting;
-        public string dataSource;
+        public string station_heard { get; set; }
+        public string station_reporting { get; set; }
+        public string date_time_reported { get; set; }
+        public string mode_computed { get; set; }
+        public string country { get; set; }
+        public string report_key { get; set; }
+        public string solar_flux_value { get; set; }
+        public string distance_value { get; set; }
+        public string band_value { get; set; }
+        public string heard_latitude_value { get; set; }
+        public string heard_longitude_value { get; set; }
+        public string reporting_latitude_value { get; set; }
+        public string reporting_longitude_value { get; set; }
+        public string frequency_value { get; set; }
+        public string timeGMT_value { get; set; }
+        public string country_reporting { get; set; }
+        public string dataSource { get; set; }
     }
 }
