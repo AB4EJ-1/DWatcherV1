@@ -236,7 +236,7 @@ namespace dwatcher
 
                             try
                             {
-                                webInfo = httpClient.GetStringAsync(Properties.Settings.Default.dstarSource).GetAwaiter().GetResult();
+                                webInfo = httpClient.GetStringAsync(Properties.Settings.Default.dstarSource).ConfigureAwait(false).GetAwaiter().GetResult();
 
                                 //     Thread.Sleep(5000);
                                 Task.Factory.StartNew(() =>
@@ -266,7 +266,7 @@ namespace dwatcher
 
                             }, token, TaskCreationOptions.None, context);
                             Thread.Sleep(1000);
-                            dxInfo = httpClient.GetStringAsync(Properties.Settings.Default.DXSource).GetAwaiter().GetResult();
+                            dxInfo = httpClient.GetStringAsync(Properties.Settings.Default.DXSource).ConfigureAwait(false).GetAwaiter().GetResult();
 
                             reportList = JsonConvert.DeserializeObject<List<HeardReport>>(dxInfo);
 
